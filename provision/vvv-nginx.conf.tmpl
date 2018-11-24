@@ -1,14 +1,14 @@
 ################################################################
-# WordPress develop src nginx configuration
+# WordPress 5.0 develop src nginx configuration
 #
-# http://src.wordpress-develop.dev - this server configuration is
+# http://src.wp50-develop.dev - this server configuration is
 # setup to listen on port 80 for any requests coming in to
-# src.wordpress-develop.dev and use the {vvv_path_to_site}/public_html/src
+# src.wp50-develop.dev and use the {vvv_path_to_site}/public_html/src
 # directory to serve them.
 server {
     listen       80;
     listen       443 ssl;
-    server_name  src.wordpress-develop.test *.src.wordpress-develop.test src.wordpress-develop.dev *.src.wordpress-develop.dev ~^src\.wordpress-develop\.\d+\.\d+\.\d+\.\d+\.xip\.io$;
+    server_name  src.wp50-develop.test *.src.wp50-develop.test ~^src\.wp50-develop\.\d+\.\d+\.\d+\.\d+\.xip\.io$;
     root         {vvv_path_to_site}/public_html/src;
 
     error_log    {vvv_path_to_site}/log/src.error.log;
@@ -23,21 +23,21 @@ server {
 }
 
 ################################################################
-# WordPress develop build nginx configuration
+# WordPress 5.0 develop build nginx configuration
 #
-# http://build.wordpress-develop.dev - this server configuration is
+# http://build.wp50-develop.dev - this server configuration is
 # setup to listen on port 80 for any requests coming in to
-# build.wordpress-develop.dev and use the {vvv_path_to_site}/public_html/build
+# build.wp50-develop.dev and use the {vvv_path_to_site}/public_html/build
 # directory to serve them.
 server {
     listen       80;
     listen       443 ssl;
-    server_name  build.wordpress-develop.test *.build.wordpress-develop.test build.wordpress-develop.dev *.build.wordpress-develop.dev ~^build\.wordpress-develop\.\d+\.\d+\.\d+\.\d+\.xip\.io$;
+    server_name  build.wp50-develop.test *.build.wp50-develop.test ~^build\.wp50-develop\.\d+\.\d+\.\d+\.\d+\.xip\.io$;
     root         {vvv_path_to_site}/public_html/build;
 
     error_log    {vvv_path_to_site}/log/build.error.log;
     access_log   {vvv_path_to_site}/log/build.access.log;
-    
+
     set          $upstream {upstream};
 
     {{TLS_CERT}}
